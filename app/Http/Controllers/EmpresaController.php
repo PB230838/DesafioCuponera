@@ -24,6 +24,8 @@ class EmpresaController extends Controller
         return redirect()->route('admin.empresas.index')->withSuccess('Empresa creada exitosamente');
     }
 
+    
+
     public function show(Empresa $empresa)
     {
         return view('empresas.show', compact('empresa'));

@@ -29,7 +29,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Código</th>
+                                    <th>Titulo</th>
                                     <th>Estado</th>
                                     <th>Acción</th>
                                 </tr>
@@ -38,7 +38,7 @@
                                 @forelse($cupones as $cupon)
                                     <tr>
                                         <td scope="row">{{ $loop->iteration }}</td>
-                                        <td>{{ $cupon->codigo }}</td>
+                                        <td>{{ $cupon->titulo }}</td>
                                         <td style="color: {{ $cupon->estado === 'Inactivo' ? 'red' : 'green' }}">
                                             {{ $cupon->estado }}
                                         </td>

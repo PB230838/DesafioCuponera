@@ -30,6 +30,22 @@
                         <input id="titulo" name="titulo" type="text" class="form-control" placeholder="Título del cupón" />
                     </div>
                 </div>
+                @if(auth()->user()->hasRole('ADMIN'))
+                    <!-- Mostrar listado de empresas -->
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="empresa">Empresa</label>
+                            <select id="empresa" name="empresa_id" class="form-select">
+                                @foreach($empresas as $empresa)
+                                    <option value="{{ $empresa->id }}">{{ $empresa->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                @else
+                    <!-- No mostrar listado de empresas -->
+                    <input type="hidden" name="empresa_id" value="{{ auth()->user()->empresa_id }}">
+                @endif
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <label for="precio">Precio</label>
@@ -54,15 +70,19 @@
                         <input id="fecha_fin" name="fecha_fin" type="datetime-local" class="form-control" />
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
-                    <div class="mb-3">
-                        <label for="estado">Estado</label>
-                        <select id="estado" name="estado" class="form-select">
-                            <option value="activo">Activo</option>
-                            <option value="inactivo">Inactivo</option>
-                        </select>
+                @if(auth()->user()->hasRole('ADMIN'))
+                    <div class="col-12 col-md-6">
+                        <div class="mb-3">
+                            <label for="estado">Estado</label>
+                            <select id="estado" name="estado" class="form-select">
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <input type="hidden" name="estado" value="inactivo">
+                @endif
             </div>
         </form>
     </div>

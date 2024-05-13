@@ -5,7 +5,11 @@
 
 ## Instrucciones para el uso CuponeraUDB
 
+COMPOSER INSTALL
 
+NPM RUN DEV && NPM INSTALL
+
+php artisan key:generate
 
 
 ### Registro de Usuario:

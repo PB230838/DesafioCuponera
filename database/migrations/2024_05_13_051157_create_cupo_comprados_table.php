@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("id_usuario");
             $table->string("codigo");
             $table->unsignedBigInteger("id_cupon");
+            $table->string("estado")->default("No Canjeado"); // Campo estado por defecto "No Canjeado"
             $table->integer("cantidad_compra");
             $table->timestamps();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cupo_comprados');
+        Schema::dropIfExists('cupones_comprados');
     }
 };

@@ -29,6 +29,10 @@ Route::get("/", function(){
     return view("welcome", compact("cupones"));
 })->name("welcome");
 
+Route::get('/canjear-cupon', 'App\Http\Controllers\CuponCompradoController@index')->name('canjear-cupon.index');
+Route::post('canjear-cupon/{cuponComprado}', [CuponCompradoController::class, 'canjear'])->name('canjear-cupon.canjear');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -72,4 +76,5 @@ Route::group([
     Route::put('/profile/{user}/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
     Route::get("/comprar-cupon/{cupon}", [CuponesController::class, "comprarCupon"])->name("comprar");
     Route::post("/guardar-compra-cupon/{cupon}", [CuponesController::class, "guardarCompra"])->name("guardar.compra");
+
 });

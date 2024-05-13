@@ -7,6 +7,7 @@ use App\Models\CupoComprado;
 use App\Models\Cupon;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CuponesController extends Controller
 {
@@ -67,6 +68,11 @@ class CuponesController extends Controller
 
     public function guardarCompra(Request $request, Cupon $cupon){
 
+        if ($request->cantidad > $cupon->cantidad_disponible) {
+            return redirect()->route('welcome')->withErrors(['message' => 'La compra no es posible. La cantidad solicitada es mayor que la cantidad disponible.']);
+
+        }
+    
         $codigo = "";
         for($i = 0; $i <= 6; $i++){
             $codigo .= rand(1, 9);
@@ -77,11 +83,12 @@ class CuponesController extends Controller
             "id_cupon" => $cupon->id,
             "cantidad_compra" => $request->cantidad,
         ];
-
+    
         (new CupoComprado($fill))->save();
         $cupon->cantidad_disponible = $cupon->cantidad_disponible - $request->cantidad;
         $cupon->save();
         return redirect()->route('welcome')->withSuccess('Cupon comprado');
     }
+    
 
 }

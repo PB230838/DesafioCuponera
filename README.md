@@ -1,4 +1,3 @@
-# Laravel stater kit
 
 <hr />
 

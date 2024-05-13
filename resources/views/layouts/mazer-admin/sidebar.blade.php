@@ -45,6 +45,13 @@
                         </li>
                     </ul>
                 </li>
+            @elseif(auth()->user()->hasRole('USER'))
+                <li class="sidebar-item">
+                    <a href="{{ route('admin.cupones.index') }}" class='sidebar-link'>
+                        <i class="fa fa-ticket-alt"></i>
+                        <span>Cupones</span>
+                    </a>
+                </li>
             @endif
             <li class="sidebar-title">Profile</li>
             <li class="sidebar-item @if (Route::currentRouteName() == 'profile.edit') active @endif">

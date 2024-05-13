@@ -30,6 +30,9 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Titulo</th>
+                                    <th>Cantidad</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Fin</th>
                                     <th>Estado</th>
                                     <th>Acción</th>
                                 </tr>
@@ -39,17 +42,22 @@
                                     <tr>
                                         <td scope="row">{{ $loop->iteration }}</td>
                                         <td>{{ $cupon->titulo }}</td>
+                                        <td>{{ $cupon->cantidad_disponible <= 0 ? 'Agotados' : $cupon->cantidad_disponible }}</td>
+                                        <td>{{ $cupon->fecha_inicio }}</td>
+                                        <td>{{ $cupon->fecha_fin }}</td>
                                         <td style="color: {{ $cupon->estado === 'Inactivo' ? 'red' : 'green' }}">
                                             {{ $cupon->estado }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.cupones.edit', $cupon->id) }}"
-                                                class="btn btn-primary btn-sm">Editar</a>
+                                            @if(auth()->user()->hasRole('ADMIN') && $cupon->empresa_id == auth()->user()->empresa_id)
+                                                <a href="{{ route('admin.cupones.edit', $cupon->id) }}"
+                                                    class="btn btn-primary btn-sm">Editar</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4">No se encontraron cupones</td>
+                                        <td colspan="7">No se encontraron cupones</td>
                                     </tr>
                                 @endforelse
                             </tbody>

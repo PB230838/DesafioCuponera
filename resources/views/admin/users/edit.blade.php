@@ -1,14 +1,12 @@
 @extends('layouts.mazer-admin')
 
-
 @section('content')
     <div class="row">
         <div class="col-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a>
-                    </li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Edit User</li>
                 </ol>
             </nav>
@@ -29,8 +27,7 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label for="name">User Name</label>
-                        <input id="name" name="name" type="text" class="form-control"
-                            value="{{ old('', $user->name) }}" />
+                        <input id="name" name="name" type="text" class="form-control" value="{{ old('name', $user->name) }}" />
                         @error('name')
                             <span class="text-danger small" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -41,13 +38,21 @@
 
                 <div class="mb-3 col-12">
                     <label id="email_label" for="email">Email Address</label>
-                    <input id="email" name="email" type="email" class="form-control"
-                        value="{{ old('', $user->email) }}" />
+                    <input id="email" name="email" type="email" class="form-control" value="{{ old('email', $user->email) }}" />
                     @error('email')
                         <span class="text-danger small" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="empresa_id">Empresa</label>
+                    <select id="empresa_id" name="empresa_id" class="form-control">
+                        @foreach ($empresas as $empresa)
+                            <option value="{{ $empresa->id }}" @if ($user->empresa_id == $empresa->id) selected @endif>{{ $empresa->nombre }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="col-12 my-2">

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 
@@ -8,32 +10,39 @@ class EmpresaController extends Controller
     public function index()
     {
         $empresas = Empresa::all();
-        return response()->json($empresas);
+        return view('empresas.index', compact('empresas'));
+    }
+
+    public function create()
+    {
+        return view('empresas.create');
     }
 
     public function store(Request $request)
     {
         $empresa = Empresa::create($request->all());
-        return response()->json($empresa, 201);
+        return redirect()->route('admin.empresas.index')->withSuccess('Empresa creada exitosamente');
     }
 
-    public function show($id)
+    public function show(Empresa $empresa)
     {
-        $empresa = Empresa::findOrFail($id);
-        return response()->json($empresa);
+        return view('empresas.show', compact('empresa'));
     }
 
-    public function update(Request $request, $id)
+    public function edit(Empresa $empresa)
     {
-        $empresa = Empresa::findOrFail($id);
+        return view('empresas.edit', compact('empresa'));
+    }
+
+    public function update(Request $request, Empresa $empresa)
+    {
         $empresa->update($request->all());
-        return response()->json($empresa, 200);
+        return redirect()->route('admin.empresas.index')->withSuccess('Empresa actualizada exitosamente');
     }
 
-    public function destroy($id)
+    public function destroy(Empresa $empresa)
     {
-        Empresa::destroy($id);
-        return response()->json(null, 204);
+        $empresa->delete();
+        return redirect()->route('admin.empresas.index')->withSuccess('Empresa eliminada exitosamente');
     }
 }
-

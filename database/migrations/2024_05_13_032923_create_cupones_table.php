@@ -16,7 +16,7 @@ class CreateCuponesTable extends Migration
             $table->integer('cantidad_disponible');
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_fin');
-            $table->string('estado')->default('activo');
+            $table->string('estado')->default('inactivo');
             $table->timestamps();
 
             $table->foreign('empresa_id')->references('id')->on('empresas');

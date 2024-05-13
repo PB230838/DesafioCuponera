@@ -39,6 +39,12 @@
                     <li class="submenu-item ">
                         <a href="{{ route('admin.users.index') }}">Usuarios Lista</a>
                     </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.empresas.index') }}">Empresas Lista</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.cupones.index') }}">Cupones Lista</a>
+                    </li>
                 </ul>
             </li>
 

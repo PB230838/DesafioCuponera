@@ -7,6 +7,8 @@ use App\Http\Requests\Admin\User\StoreRequest;
 use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Empresa;
+
 
 class UserController extends Controller
 {
@@ -17,10 +19,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('empresa')->get();
         return view('admin.users.index', compact('users'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,8 +30,10 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.users.create', compact('roles'));
+        $empresas = Empresa::all();
+        return view('admin.users.create', compact('roles', 'empresas'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -40,14 +43,15 @@ class UserController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        // return $request->all();
-
         $user = User::create($request->validated());
-
+    
         $user->assignRole($request->roles);
-
-        return redirect()->route('admin.users.index')->withSuccess('User created');
+        $user->empresa()->associate($request->empresa_id);
+        $user->save();
+    
+        return redirect()->view('admin.users.index')->withSuccess('User created');
     }
+    
 
     /**
      * Display the specified resource.
@@ -69,8 +73,10 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        $empresas = Empresa::all();
+        return view('admin.users.edit', compact('user', 'roles', 'empresas'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -82,11 +88,14 @@ class UserController extends Controller
     public function update(UpdateRequest $request, User $user)
     {
         $user->update($request->validated());
-
+    
         $user->syncRoles($request->roles);
-
+        $user->empresa()->associate($request->empresa_id);
+        $user->save();
+    
         return redirect()->route('admin.users.index')->withSuccess('User updated');
     }
+    
 
     /**
      * Remove the specified resource from storage.

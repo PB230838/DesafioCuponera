@@ -1,14 +1,12 @@
 @extends('layouts.mazer-admin')
 
-
 @section('content')
     <div class="row">
         <div class="col-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a>
-                    </li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
                     <li class="breadcrumb-item active" aria-current="page">New User</li>
                 </ol>
             </nav>
@@ -60,6 +58,21 @@
                 <div class="mb-3 col-12">
                     <label for="password_confirmation">Confirm Password</label>
                     <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" />
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="empresa_id">Empresa</label>
+                    <select id="empresa_id" name="empresa_id" class="form-select">
+                        <option value="">Selecciona una empresa</option>
+                        @foreach($empresas as $empresa)
+                            <option value="{{ $empresa->id }}">{{ $empresa->nombre }}</option>
+                        @endforeach
+                    </select>
+                    @error('empresa_id')
+                        <span class="text-danger small" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="col-12 my-2">

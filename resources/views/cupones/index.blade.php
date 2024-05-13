@@ -6,44 +6,50 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Users</li>
+                    <li class="breadcrumb-item active" aria-current="page">Cupones</li>
                 </ol>
             </nav>
         </div>
     </div>
 
-    <div class="row my-2">
+    <div class="row my-2 justify-content-end">
         <div class="mx-auto">
-            <a href="{{ route('admin.users.create') }}" class="btn btn-primary">New User</a>
+            <a href="{{ route('admin.cupones.create') }}" class="btn btn-primary btn-sm">Nuevo Cupón</a>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Lista</h4>
+                    <h4>Cupones</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>User</th>
-                                    <th>Empresa</th>
-                                    <th>Action</th>
+                                    <th>#</th>
+                                    <th>Código</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($users as $user)
+                                @forelse($cupones as $cupon)
                                     <tr>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->empresa ? $user->empresa->nombre : 'Sin empresa asignada' }}</td>
-                                        <td><a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary"><i
-                                                    class="fa fa-pencil-alt" aria-hidden="true"></i></a></td>
+                                        <td scope="row">{{ $loop->iteration }}</td>
+                                        <td>{{ $cupon->codigo }}</td>
+                                        <td style="color: {{ $cupon->estado === 'Inactivo' ? 'red' : 'green' }}">
+                                            {{ $cupon->estado }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.cupones.edit', $cupon->id) }}"
+                                                class="btn btn-primary btn-sm">Editar</a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="3">No users found</td>
+                                        <td colspan="4">No se encontraron cupones</td>
                                     </tr>
                                 @endforelse
                             </tbody>

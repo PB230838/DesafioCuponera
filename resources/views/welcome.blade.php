@@ -4,6 +4,13 @@
     <div class="container">
         <div class="row">
 
+            @if(session('codigo'))
+            <div class="alert alert-success mt-3" role="alert">
+                Código de cupón: {{ session('codigo') }}
+            </div>
+        @endif
+
+
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

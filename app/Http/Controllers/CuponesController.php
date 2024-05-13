@@ -64,13 +64,14 @@ class CuponesController extends Controller
     public function comprarCupon(Cupon $cupon){
 
         return view("cupones.comprar", compact("cupon"));
+
+        
+
     }
-
-    public function guardarCompra(Request $request, Cupon $cupon){
-
+    public function guardarCompra(Request $request, Cupon $cupon)
+    {
         if ($request->cantidad > $cupon->cantidad_disponible) {
             return redirect()->route('welcome')->withErrors(['message' => 'La compra no es posible. La cantidad solicitada es mayor que la cantidad disponible.']);
-
         }
     
         $codigo = "";
@@ -87,8 +88,11 @@ class CuponesController extends Controller
         (new CupoComprado($fill))->save();
         $cupon->cantidad_disponible = $cupon->cantidad_disponible - $request->cantidad;
         $cupon->save();
-        return redirect()->route('welcome')->withSuccess('Cupon comprado');
+    
+        session(['codigo' => $codigo]);
+    
+        return redirect()->route('welcome', $cupon->id)->withSuccess('Cupón comprado');
     }
     
+        }
 
-}

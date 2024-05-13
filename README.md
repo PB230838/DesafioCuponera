@@ -2,120 +2,36 @@
 
 <hr />
 
-## How to use
 
-Click on Use this template button then follow normal project creation steps in git
 
-Once project is created, clone to your system
+## Instrucciones para el uso CuponeraUDB
 
-    cp .env.example .env
-    composer install
-    npm install && npm run dev
-    php artisan key:generate
-    php artisan migrate:fresh --seed
-    php artisan serve
 
-## Docker (Sail)
 
-```
-cp .env.example .env
-docker run --rm -v $(pwd):/opt -w /opt laravelsail/php81-composer:latest composer install
-./vendor/bin/sail up -d
-./vendor/bin/sail artisan key:generate
-./vendor/bin/sail artisan migrate:fresh --seed
-```
 
-### Passport Api installation and configuring client id and secret
+### Registro de Usuario:
+Un usuario nuevo puede registrarse en la aplicación.
+Después de registrarse, el usuario no tiene opciones asignadas.
 
-If you need the api for authentication run the below command
 
-```
-php artisan passport:install
-```
+### Inicio de Sesión de Administrador:
+El administrador puede iniciar sesión con las siguientes credenciales:
+Correo electrónico: admin@udb.com
+Contraseña: password
 
-This will give sample output
-e.g.
 
-```
-Personal access client created successfully.
-Client ID: 1
-Client secret: idYopC1DiScLLkjXN7tPh8Wu3QxfViME6nJJurtd
-Password grant client created successfully.
-Client ID: 2
-Client secret: qIiqHzXu58g7DQl8fKiSTFKRFcMzD0napwYi2W6l
-```
+### Asignación de Empresa y Rol:
+Una vez que el administrador inicie sesión, puede ver el listado de usuarios registrados.
+El administrador puede asignar una empresa y un rol al usuario registrado.
 
-Paste any one of these keys in your .env file as below
 
-```
-PASSPORT_PERSONAL_ACCESS_CLIENT_ID=1
-PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET="idYopC1DiScLLkjXN7tPh8Wu3QxfViME6nJJurtd"
-```
+### Inicio de Sesión del Usuario:
+El usuario puede iniciar sesión después de que el administrador le haya asignado una empresa y un rol.
 
-# TODO
 
-    - Multiple theme support
-    - API support
+### Creación de Cupones:
+Después de iniciar sesión, el usuario puede crear cupones.
 
-## Made with
 
-    - Laravel 10.x
-    - larave/ui package
-    - Webkit Admin template
-    - spatie/laravel-permission
-    - barryvdh/laravel-ide-helper
-    - laravel-shift/blueprint
-    - Font Awesome 5 icons
-    - Mazer 2.0 Admin template
-
-## Screenshots
-
-### New Bs5 based Stunning Mazer 2.0 Admin theme
-
-### Light Mode
-
-![theme](public/screenshots/07.png)
-
-### Dark Mode
-
-![dark_theme](public/screenshots/08.png)
-
-### Home
-
-![home](public/screenshots/00.png)
-
-### Login
-
-![login](public/screenshots/01.png)
-
-### Register
-
-![register](public/screenshots/02.png)
-
-### Home
-
-![home](public/screenshots/03.png)
-
-### Dashboard
-
-![dashboard](public/screenshots/04.png)
-
-### Role management
-
-![role_management](public/screenshots/05.png)
-
-### Profile
-
-![profile](public/screenshots/06.png)
-
-## Credits
-
-[Laravel](https://laravel.com/) Framework 10.x
-
-Theme: Bootstrap 5 based [Mazer 2.0](https://github.com/zuramai/mazer)
-
-Role management: [Spatie Laravel Permissions](https://github.com/spatie/laravel-permission)
-
-## License
-
-The MIT License (MIT). Please see [License](#license) File for more information.
+### Canjeo de Cupones:
+En la vista raíz de la página, el usuario puede encontrar opciones para comprar cupones o canjear cupones.

@@ -9,6 +9,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CuponesController;
+use App\Http\Controllers\CuponCompradoController;
 use App\Models\Cupon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,7 @@ Route::get("/", function(){
 })->name("welcome");
 
 Route::get('/canjear-cupon', 'App\Http\Controllers\CuponCompradoController@index')->name('canjear-cupon.index');
-Route::post('canjear-cupon/{cuponComprado}', [CuponCompradoController::class, 'canjear'])->name('canjear-cupon.canjear');
+Route::post('canjear-cupon/{cuponComprado}', 'App\Http\Controllers\CuponCompradoController@canjearCupon')->name('canjear-cupon.canjearCupon');
 
 
 Auth::routes();

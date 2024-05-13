@@ -9,6 +9,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CuponesController;
+use App\Models\Cupon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('welcome');
+Route::get("/", function(){
+    $cupones = Cupon::where("cantidad_disponible", ">", 0)->get();
+    return view("welcome", compact("cupones"));
+})->name("welcome");
 
 Auth::routes();
 
@@ -66,4 +70,6 @@ Route::group([
     Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/{user}/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+    Route::get("/comprar-cupon/{cupon}", [CuponesController::class, "comprarCupon"])->name("comprar");
+    Route::post("/guardar-compra-cupon/{cupon}", [CuponesController::class, "guardarCompra"])->name("guardar.compra");
 });

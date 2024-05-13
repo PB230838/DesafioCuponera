@@ -3,18 +3,22 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Welcome to {{ config('app.name') }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted ">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-                            the card's content.</p>
+
+            @forelse ($cupones as $cupon)
+                <div class="col-6">
+                    <div class="card">
+                        <h5 class="card-header">{{ $cupon->titulo }} ({{$cupon->cantidad_disponible}} disponibles)</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">${{ $cupon->precio }}</h5>
+                            <p class="card-text">{{ $cupon->empresa->nombre }}</p>
+                            <a href="{{route("comprar", $cupon->id)}}" class="btn btn-primary">Comprar</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @empty
+                <h1>NO HAY CUPONES</h1>
+            @endforelse
+
         </div>
     </div>
-
 @endsection

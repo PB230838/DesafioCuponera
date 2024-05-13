@@ -51,6 +51,8 @@ Route::group([
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);
         Route::resource('users', UserController::class);
+        Route::resource('empresas', EmpresaController::class); // Rutas para el controlador de empresas
+
 
         Route::resource('blogs', AdminBlogController::class);
     });

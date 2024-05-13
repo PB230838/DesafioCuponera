@@ -21,7 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('photo')->default('images/default.png');
             $table->string('password');
             $table->rememberToken();
+            $table->unsignedBigInteger('empresa_id')->nullable(); 
             $table->timestamps();
+
+            $table->foreign('empresa_id')->references('id')->on('empresas'); // Definimos la relación con la tabla empresas y cómo se manejará la eliminación de la empresa relacionada
         });
     }
 

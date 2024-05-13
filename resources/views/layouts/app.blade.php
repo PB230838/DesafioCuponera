@@ -28,7 +28,7 @@
                                     </li>
                                     @endif @if (Route::has('register'))
                                         <li class="btn">
-                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                                         </li>
                                     @endif
                                 @else
@@ -69,131 +69,6 @@
                         </div>
                     </div>
                 </div>
-                <nav class="main-navbar">
-                    <div class="container">
-                        <ul>
-                            <li class="menu-item  ">
-                                <a href="#" class='menu-link'>
-                                    <i class="bi bi-grid-fill"></i>
-                                    <span>Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="menu-item  has-sub">
-                                <a href="#" class='menu-link'>
-                                    <i class="bi bi-stack"></i>
-                                    <span>Components</span>
-                                </a>
-                                <div class="submenu ">
-                                    <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
-                                    <div class="submenu-group-wrapper">
-                                        <ul class="submenu-group">
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Alert</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Badge</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Breadcrumb</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Button</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Card</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Carousel</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Collapse</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Dropdown</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="submenu-group">
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>List
-                                                    Group</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Modal</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Navs</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Pagination</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Progress</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Spinner</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Tooltip</a>
-                                            </li>
-                                            <li class="submenu-item  has-sub">
-                                                <a href="#" class='submenu-link'>Extra Components</a>
-                                                <!-- 3 Level Submenu -->
-                                                <ul class="subsubmenu">
-                                                    <li class="subsubmenu-item ">
-                                                        <a href="#" class="subsubmenu-link">Avatar</a>
-                                                    </li>
-                                                    <li class="subsubmenu-item ">
-                                                        <a href="#" class="subsubmenu-link">Sweet Alert</a>
-                                                    </li>
-                                                    <li class="subsubmenu-item ">
-                                                        <a href="#" class="subsubmenu-link">Toastify</a>
-                                                    </li>
-                                                    <li class="subsubmenu-item ">
-                                                        <a href="#" class="subsubmenu-link">Rating</a>
-                                                    </li>
-                                                    <li class="subsubmenu-item ">
-                                                        <a href="#" class="subsubmenu-link">Divider</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="menu-item active has-sub">
-                                <a href="#" class='menu-link'>
-                                    <i class="bi bi-grid-1x2-fill"></i>
-                                    <span>Layouts</span>
-                                </a>
-                                <div class="submenu ">
-                                    <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
-                                    <div class="submenu-group-wrapper">
-                                        <ul class="submenu-group">
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Default Layout</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>1
-                                                    Column</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>Vertical
-                                                    Navbar</a>
-                                            </li>
-                                            <li class="submenu-item  ">
-                                                <a href="#" class='submenu-link'>RTL Layout</a>
-                                            </li>
-                                            <li class="submenu-item active ">
-                                                <a href="#" class='submenu-link'>Horizontal
-                                                    Menu</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
             </header>
             <div class="content-wrapper container">
                 @yield('content')
